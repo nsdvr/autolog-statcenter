@@ -1,0 +1,19 @@
+# OS generated #
+.DS_Store
+.DS_Store?
+._*
+._Spotlight-V100
+.Trashes
+.ehthumbs.db
+
+# files #
+*.bak
+*.txt
+*.log
+token.js
+phrase.js
+aws.zip
+
+# directories #
+/node_modules/
+/aws/
