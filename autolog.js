@@ -64,7 +64,7 @@ client.on("message", msg => {
   msg.channel.send(bdmessage);
   console.log(msg.author + "sent " + bdmessage);
  }
- 
+
 //!help
  if (msg.content.startsWith(prefix + "help")) {
    msg.channel.send(`I can !johnsim [insert-opinion-here], !hug, !grouphug !currentyear, !cointoss, !doggo, !hype, !gender or !opinion [@-user-here].`);
@@ -248,7 +248,7 @@ client.on("message", msg => {
 });
 
 client.on("message", msg => {
-    if (msg.content.includes("no 15") || (msg.content.includes("15")) || (msg.content.includes("burger king")) || (msg.content.includes("lettuce"))) {
+    if (msg.content.includes("no 15") || (msg.content.includes(" 15 ")) || (msg.content.includes("burger king")) || (msg.content.includes("lettuce"))) {
         msg.channel.send(`:hamburger: :crown: :mans_shoe: :salad:`);
         console.log(currentdate + " - but thats even worse");
     }
