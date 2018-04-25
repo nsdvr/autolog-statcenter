@@ -1,7 +1,3 @@
-let edge_triggers = [
-  `new boc`,
-  'amber',
-  'oversteps'
-];
+let edge_triggers = [];
 
 exports.edge_triggers = edge_triggers;
