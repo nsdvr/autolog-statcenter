@@ -248,7 +248,7 @@ client.on("message", msg => {
 });
 
 client.on("message", msg => {
-    if (msg.content.includes("no 15") || (msg.content.includes(" 15 ")) || (msg.content.includes("burger king")) || (msg.content.includes("lettuce"))) {
+    if (msg.content.includes("burger king")) {
         msg.channel.send(`:hamburger: :crown: :mans_shoe: :salad:`);
         console.log(currentdate + " - but thats even worse");
     }
