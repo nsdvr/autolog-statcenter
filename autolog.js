@@ -14,6 +14,8 @@ var delay=500; //.5 second
 var currentYear = new Date().getFullYear();
 var currentdate = new Date();
 var datetime = currentdate.getDate() + "/" + (parseInt(currentdate.getMonth()) + 1) + "/" + currentdate.getFullYear();
+var getYT = require('get-youtube-title')
+var getYTID = require('get-youtube-id');
 var http = require('http');
 
 //plug command stuff
@@ -231,7 +233,18 @@ client.on("message", msg => {
       console.log(currentdate + " - EdgeMeter Increased");
     }
 });
-
+//Alex Detector
+client.on("message", msg => {
+    if (msg.content.includes("youtube.com/watch?v=")) {
+      const ytid = getYTID(msg.content)
+      getYT(ytid, function (err, title) {
+        if (title.includes("Alex" || "Jones" || "Infowars" || "alex" || "jones" || "infowars")) {
+          msg.channel.send(":warning: B E W A R E : Potential Alex Jones Video")
+        }
+        console.log(title)
+})
+    }
+})
 //Secret phrase triggers bot racism.
 client.on("message", msg => {
     if (msg.content.includes("14 words")) {
