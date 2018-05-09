@@ -28,10 +28,10 @@ var plugBot = new PlugAPI ({
 });
 
 //log plugbot in
-plugBot.connect('exp-noise-weirdshit-novelty')
-plugBot.on('roomJoin', function(room) {
-    console.log("autolog has entered " + room);
-});
+//plugBot.connect('exp-noise-weirdshit-novelty')
+//plugBot.on('roomJoin', function(room) {
+//    console.log("autolog has entered " + room);
+//});
 
 
 //### !commands ###
@@ -107,20 +107,20 @@ try {
       let i2 = Math.floor(Math.random() * 8);
       let adjective2 = adjective2s[i2];
   msg.channel.send(`:robot: Robbie The Robot: Wow, I'm ${adjective1} by you thinking ${jonpinion}. It's absolutely ${adjective2} that ${johnner} really thinks${jonpinion}.`);
-  console.log(currentdate + " John Spoke")
+  console.log(currentdate + msg.author +  " John Spoke")
   }
 
 //!currentyear
   if (msg.content.startsWith(prefix + "currentyear")) {
     msg.channel.send(`The current year is ${currentYear}`);
-    console.log(currentdate + " - Displayed the Current Year");
+    console.log(currentdate + msg.author +  " - Displayed the Current Year");
   }
 
 //!hug
   if (msg.content.startsWith(prefix + "hug")) {
     let userToHug = msg.author;
     msg.channel.send(`*gives ${userToHug} a warm hug.*`)
-    console.log(currentdate + " Gave a hug.");
+    console.log(currentdate + msg.author + " Gave a hug.");
   }
 
 //!grouphug
@@ -146,7 +146,7 @@ try {
     setTimeout(function() {
     msg.channel.send(`${selectedopinion}`);
   }, delay);
-    console.log(currentdate + " - Corrected an opinion");
+    console.log(currentdate +msg.author+ " - Corrected an opinion");
   }
 
 //!gender
@@ -158,16 +158,16 @@ try {
       let genderdescription = '"'+genders[i][1]+'"';
     msg.channel.send(`${selectedgender}`);
     msg.channel.send(`${genderdescription}`);
-    console.log(currentdate + " - Assumed a gender." )
+    console.log(currentdate + msg.author + " - Assumed a gender." )
   }
 
 //!hype
   if (msg.content.startsWith(prefix + "hype")){
       let hypephrases = require('./hypephrases.js').hypephrases;
-      let i = Math.floor(Math.random() * 69);
+      let i = Math.floor(Math.random() * 77);
       let selectedhype = hypephrases[i];
       msg.channel.send(`${selectedhype}`);
-    console.log(currentdate + " - Generated Hype");
+    console.log(currentdate + msg.author +" - Generated Hype");
   }
 
 //!doggo
@@ -176,7 +176,7 @@ try {
       // Select a random woof from Barks array
       let pickBark = barks[Math.floor(Math.random() * barks.length)];
       msg.channel.send(":dog: Richard Divine The Pup: " + pickBark + " :dog:");
-    console.log("somebody WOOF WOOF");
+    console.log(currentdate + msg.author + " - WOOF WOOF");
     }
 
 //!cointoss
@@ -193,6 +193,20 @@ try {
     console.log(currentdate + " " + userWhoTossed + " Tossed a coin.");
     }
 
+//ceelo
+if (msg.content.startsWith(prefix + "ceelo")) {
+    let userWhoRolled = msg.author;
+    msg.channel.send(`:fingers_crossed::fingers_crossed: ${userWhoRolled}'s roll: `)
+    var dice = [`[ 1 ]`,`[ 2 ]`,`[ 3 ]`,`[ 4 ]`,`[ 5 ]`,`[ 6 ]`]
+    for (i = 0; i < 3; i++) {
+      let r = Math.floor(Math.random() * 6);
+      msg.channel.send(`${dice[r]}`);
+    console.log(currentdate + " " + msg.author + "rolled tha dice")
+    }
+  }
+ if (msg.content.startsWith(prefix + "rules of ceelo")) {
+        msg.channel.send(`Aite playa its like this: You roll 3 dice. Best roll is 4-5-6, second best is trips. Rolling a 1-2-3 is an automatic loss. Otherwise you have to roll a pair and the orphan is your number. If you roll 3 random numbers that aren't 1-2-3 or 4-5-6, you must re-roll.`);
+      }
 //
 
 });
