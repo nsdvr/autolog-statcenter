@@ -28,10 +28,10 @@ var plugBot = new PlugAPI ({
 });
 
 //log plugbot in
-//plugBot.connect('exp-noise-weirdshit-novelty')
-//plugBot.on('roomJoin', function(room) {
-//    console.log("autolog has entered " + room);
-//});
+plugBot.connect('exp-noise-weirdshit-novelty')
+plugBot.on('roomJoin', function(room) {
+    console.log("autolog has entered " + room);
+});
 
 
 //### !commands ###
