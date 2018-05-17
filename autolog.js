@@ -249,7 +249,7 @@ client.on("message", msg => {
 });
 //Alex Detector
 client.on("message", msg => {
-    if (msg.content.includes("youtube.com/watch?v=")) {
+    if (msg.content.includes("youtube.com/watch?v=" || "youtu.be/")) {
       const ytid = getYTID(msg.content)
       getYT(ytid, function (err, title) {
         if (title.includes("Alex" || "Jones" || "Infowars" || "alex" || "jones" || "infowars")) {
