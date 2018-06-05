@@ -211,8 +211,6 @@ if (msg.content.startsWith(prefix + "ceelo")) {
 //random yt
 if (msg.content.startsWith(prefix + "randomyoutube")) {
   var pyoptions = {pythonPath:'python3'};
-  msg.channel.send(`Generating Random URL...`);
-  msg.channel.send(`Validating...`);
   PythonShell.run(`random-youtube-video.py`, pyoptions, function(err, results) {
     msg.channel.send(`https://youtube.com/watch?v=`+results);
   })
