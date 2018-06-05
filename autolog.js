@@ -14,9 +14,10 @@ var delay=500; //.5 second
 var currentYear = new Date().getFullYear();
 var currentdate = new Date();
 var datetime = currentdate.getDate() + "/" + (parseInt(currentdate.getMonth()) + 1) + "/" + currentdate.getFullYear();
-var getYT = require('get-youtube-title')
+var getYT = require('get-youtube-title');
 var getYTID = require('get-youtube-id');
 var http = require('http');
+var PythonShell = require('python-shell')
 
 //plug command stuff
 const PlugAPI = require('plugapi');
@@ -207,6 +208,15 @@ if (msg.content.startsWith(prefix + "ceelo")) {
  if (msg.content.startsWith(prefix + "rules of ceelo")) {
         msg.channel.send(`Aite playa its like this: You roll 3 dice. Best roll is 4-5-6, second best is trips. Rolling a 1-2-3 is an automatic loss. Otherwise you have to roll a pair and the orphan is your number. If you roll 3 random numbers that aren't 1-2-3 or 4-5-6, you must re-roll.`);
       }
+//random yt
+if (msg.content.startsWith(prefix + "randomyoutube")) {
+  var pyoptions = {pythonPath:'python3'};
+  msg.channel.send(`Generating Random URL...`);
+  msg.channel.send(`Validating...`);
+  PythonShell.run(`random-youtube-video.py`, pyoptions, function(err, results) {
+    msg.channel.send(`https://youtube.com/watch?v=`+results);
+  })
+}
 //
 
 });
