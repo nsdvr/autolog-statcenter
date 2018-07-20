@@ -183,7 +183,7 @@ try {
 //!cointoss
   if (msg.content.startsWith(prefix + "cointoss")) {
       let userWhoTossed = msg.mentions.users.first();
-    msg.channel.send(`Rotating Airborn Coin...`);
+    msg.channel.send(`Rotating Airborn Coin... (i miss val :cry:  )`);
       let outcomes = [
       "Heads.", "Tails."];
       let i = Math.floor(Math.random() * 2);
