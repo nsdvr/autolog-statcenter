@@ -4,7 +4,9 @@ a lush discord bot built on discord.js for chatmm
 by andihow roasty and the best of the chatmm massive
 */
 
-//general bot stuff
+//#######################
+//###general bot stuff###
+//#######################
 var token = require('./token.js').token;
 var phrase = require('./phrase.js').phrase
 const Discord = require("discord.js");
@@ -34,12 +36,13 @@ plugBot.on('roomJoin', function(room) {
     console.log("autolog has entered " + room);
 });
 
-
+//#################
 //### !commands ###
+//#################
 
 //defines ! as prefix for command
 client.on("message", msg => {
-  let prefix = "!";
+  var prefix = "!";
   if(!msg.content.startsWith(prefix)) return;
 
 //!bitcoin
@@ -183,7 +186,7 @@ try {
 //!cointoss
   if (msg.content.startsWith(prefix + "cointoss")) {
       let userWhoTossed = msg.mentions.users.first();
-    msg.channel.send(`Rotating Airborn Coin... (i miss val :cry:  )`);
+    msg.channel.send(`Rotating Airborn Coin...`);
       let outcomes = [
       "Heads.", "Tails."];
       let i = Math.floor(Math.random() * 2);
@@ -219,42 +222,56 @@ if (msg.content.startsWith(prefix + "randomyoutube")) {
 
 });
 
-//### End of !commands ###
-
+//###################
 //### Easter Eggs ###
+//###################
 
-// EdgeMeter variables
-var edge_counter = 0;
-var edge_timeout;
-var edge_delay = 1000*60*5; // 5 minute timeout
-
-// Edge Meter TM
-client.on("message", msg => {
-    let edge_triggers = require('./edge_triggers.js').edge_triggers;
-    let edge_found = false;
-
-    for (i=0 ; i<edge_triggers.length; i++) {
-      messagecontent = msg.content.toLowerCase();
-      if (messagecontent.includes(edge_triggers[i])) { edge_found = true }
-    }
-    if (edge_found){
-      clearTimeout(edge_timeout);
-      edge_timeout = setTimeout(function() { edge_counter = 0; }, edge_delay);
-      edge_counter = edge_counter + 10;
-      if(edge_counter < 100) {
-        msg.channel.send("Edge Level: " + edge_counter.toString() + "% - you are rather edgy.");
-      }
-      if(edge_counter >= 100 && edge_counter < 200) {
-        msg.channel.send(":warning: :warning: **EDGE LEVEL: " + edge_counter.toString() + "% - EDGE OVERDRIVE - COULD YOU NOT?!** :warning: :warning:");
-        msg.channel.send("http://i.imgur.com/wnIaRyJ.gif");
-      }
-      if (edge_counter >= 200) {
-        msg.channel.send(":warning: :warning: **EDGE LEVEL: " + edge_counter.toString() + "% = EDGE CORE MELTDOWN IMMINENT! LITERALLY NOT COOL AT ALL!** :warning: :warning:");
-        msg.channel.send("http://i.imgur.com/avHnbUZ.gif");
-      }
-      console.log(currentdate + " - EdgeMeter Increased");
-    }
+//delete-watcher
+client.on("messageDelete", (messageDelete) => {
+  client.lastDeletedMessage = messageDelete
 });
+
+client.on("message", msg => {
+  if (msg.content.startsWith("!whatwasthat")) {
+    if (!client.lastDeletedMessage){
+      msg.channel.send(`Nothing deleted recently...`);
+    }else {
+    msg.channel.send(`We have ` + client.lastDeletedMessage.author + ` on record saying "`+ client.lastDeletedMessage.content + `"`);
+  }}
+})
+
+// // EdgeMeter variables
+// var edge_counter = 0;
+// var edge_timeout;
+// var edge_delay = 1000*60*5; // 5 minute timeout
+// // Edge Meter (TM)
+// client.on("message", msg => {
+//     let edge_triggers = require('./edge_triggers.js').edge_triggers;
+//     let edge_found = false;
+
+//     for (i=0 ; i<edge_triggers.length; i++) {
+//       messagecontent = msg.content.toLowerCase();
+//       if (messagecontent.includes(edge_triggers[i])) { edge_found = true }
+//     }
+//     if (edge_found){
+//       clearTimeout(edge_timeout);
+//       edge_timeout = setTimeout(function() { edge_counter = 0; }, edge_delay);
+//       edge_counter = edge_counter + 10;
+//       if(edge_counter < 100) {
+//         msg.channel.send("Edge Level: " + edge_counter.toString() + "% - you are rather edgy.");
+//       }
+//       if(edge_counter >= 100 && edge_counter < 200) {
+//         msg.channel.send(":warning: :warning: **EDGE LEVEL: " + edge_counter.toString() + "% - EDGE OVERDRIVE - COULD YOU NOT?!** :warning: :warning:");
+//         msg.channel.send("http://i.imgur.com/wnIaRyJ.gif");
+//       }
+//       if (edge_counter >= 200) {
+//         msg.channel.send(":warning: :warning: **EDGE LEVEL: " + edge_counter.toString() + "% = EDGE CORE MELTDOWN IMMINENT! LITERALLY NOT COOL AT ALL!** :warning: :warning:");
+//         msg.channel.send("http://i.imgur.com/avHnbUZ.gif");
+//       }
+//       console.log(currentdate + " - EdgeMeter Increased");
+//     }
+// });
+
 //Alex Detector
 //client.on("message", msg => {
 //    if (msg.content.includes("youtube.com/watch?v=" || "youtu.be/")) {
@@ -267,7 +284,10 @@ client.on("message", msg => {
 //})
 //    }
 //})
-//Secret phrase triggers bot racism.
+
+//##############################
+//### Secret phrase triggers ###
+//##############################
 client.on("message", msg => {
     if (msg.content.includes("14 words")) {
         msg.channel.send(`https://i.imgur.com/6UrhSq4.png`);
@@ -289,6 +309,9 @@ client.on("message", msg => {
     }
 });
 
+//#####################
+//### announcements ###
+//#####################
 
 //announce user who's entered
 client.on("guildMemberAdd", (member) => {
