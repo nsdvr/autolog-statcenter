@@ -36,6 +36,12 @@ plugBot.on('roomJoin', function(room) {
     console.log("autolog has entered " + room);
 });
 
+// ~~~~ Bork's Bit Flippin' Game ~~~~
+// The game creates a file 'sequence.json' which holds the game state.
+// You can reset the game by deleting the file and restarting the server. This is dumb, it should be less dumb.
+const {BitFlip} = require('./bitflip.js')
+BitFlip.init()
+
 //#################
 //### !commands ###
 //#################
@@ -219,6 +225,21 @@ if (msg.content.startsWith(prefix + "randomyoutube")) {
   })
 }
 //
+
+// Bork's BitFlip Game
+if(!msg.author.bot) {
+  if(msg.content.startsWith(prefix + 'flip')) {
+    let mention = null
+    if(msg.mentions.users.array().length == 1) {
+        mention = `<@${msg.mentions.users.array()[0].id}>`
+    }
+    let response = BitFlip.flip(`<@${msg.author.id}>`, mention)
+    if(response) {
+        msg.channel.send(response)
+    }
+    msg.channel.send(BitFlip.status())
+  }
+}
 
 });
 
